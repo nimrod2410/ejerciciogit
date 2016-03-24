@@ -1,0 +1,203 @@
+rm .
+rm -rf 
+rm -rf  .git
+ls -la se muestra archivos ocultos
+
+git --version
+git config --global user.name "nimrod"----sin comillas // si te equivocaste  escribir el mismo comando y lo actualiza
+git config --global user.mail "nimrod24_10@otm"--->sin comillas
+git config --global color.ui true  --> para tener colores en el terminal
+git config --global --list --> muestra la configuracion
+
+
+-----PREPARAR AMBIENTE
+
+1.-C://----/CARPETA - ubicarnos en la carpeta para realizar git
+2.-git init --> listo para inicir cambios  -> crea una carpeta para indicar los cambios 
+3.-git add -->
+4.-git status -> muestra el estado del proyecto
+
+-----AGREGAR CAMBIOS
+
+git add -A --> agrega todo -A y empiza a rastrear --> agregamos al staging area
+git commit -m "archivos de mi portafoil" --> poner un nombre con "" -->asi agregamo al repositorio
+git commit -am >> hace el add y commit
+
+git commit -ammend -m "sustituye el ultimo commit" O LO CHANCA
+git add index.html >> para agregar solo un archivo en particular
+git commit -am "agrego y mensaje" --amend ---->> cambios de golpe y correcion del ultimo commit 
+
+git checkout
+git status
+
+-----AYUDA HELP
+git help
+git help "nombre_de_metodo" --> (sin comillas) puedo saber mas a profundidad los helps
+q --- para salir de la consola de ayuda
+
+---ALIAS
+git config --global alias.superlog "log --todo el super comando."
+git config --global alias.supercommit "commit<<nombre del comando"
+cambio el standar por uno propio
+git config --global alias.unalinea "log --online"
+git config --global alias.nicelog 'log --oneline --graph --all
+
+-----
+git log --online
+git log --oneline -- graph --abbr
+git log > commit.txt
+git log --decorate  indica donde esa el HEAD
+git log --stat  >> hubo cambios
+git log -p  >> hubo cambios y que cambios se realizaron en e index
+git log --graph --oneline --decorate
+git log --pretty=format:"string"
+git log --pretty=format:"%cn %cd"
+
+--FILTRO DE LOGS
+git log -3 >> los tres ultimmos del repositorio
+git log --before =""
+git log --after= ""
+git log --after="" --before"" 
+git log --author
+git log --grep=""
+git log -- index.html
+git log -S"mensaje"
+
+
+git log -m "mensaje"  --amend = Rectifica y sustituye el ultimo commit
+git log --oneline = muestra el commit resumido en una linea
+git log --decorate = muestra el commit con el head indicado donde esta posicionado 
+git log --stat = explica con detalle en numero de lineas que se convinaron.
+git log -p = es un análisis más profundo del anterior (git log --stat).
+git shortlog =   agrupa por autor y muestra los titulos del commit.
+git log --graph --oneline --decorate = muestra grafica del de historial del repositorio.
+  
+-------------------------
+git logs filtros de comandos
+git log -3 =  Por cantidad muestra los comiits
+git log --before="today"  = se muestra todo lo de antes de hoy
+git log --after="today"  = se muestra todo lo de mañana 
+git log --author ="AUTOR" = muestra los commits dle autor
+git log --grep="MENSAJE" = muestra el todo los commit que concuerden con el mensaje (el mensaje debe de estar en el titulo  ) sencible a MAyusculas o minusculas usar el i al final 
+git log -- archivo.* = comits por archivo (el * extencion del archivo php.html.py etc etc )
+
+git shortlog >> da el quien y cuantos commits hicieron
+----CHECKOUT
+git checkout  "codigoproporcionado_id_por git"
+git checkout master 
+---GIT RESET
+git reset -> 
+git reset --soft >> elmina el repo pero esta en staging
+git reset --mix ->> elemina el repo y el staging are
+git reset --hard >> borra todo por completo
+
+git reset --merge >>
+
+---RAMAS
+git brach
+git checkout -b  "experimental" >> si apostrofe
+
+--1FUSION
+git checkout master >>--VOLVER A LA RAMA MASTER
+git merge experimental >>  SE ABRE UN EDITOR press o para escribir -->// esc :x >>save
+
+
+ELIMINAR RAMA
+git branch -d experimental >> si la rama no ha funcionada debes forzar con D mays
+
+--si no esta en el staging area (rojo) puedes generar una rama y auomaticamente 
+git checkout -b  "experimental2"
+git add -A
+git commit -m "hola mundo"
+
+--regresar al master
+git checkout master
+
+--2FUSION CON EL MISMO ARCHIVO EN DIFERENTES TIEMPOS
+git merge experimental2
+
+--> SALDRA UN ERROR -aabrir el archivo y eliminar el q no sirve
+git status
+git add -A
+git commit -m "fusion ejecutada"
+
+--REBASE
+git checkout -b ramarebase >> se abre rama
+git rebase master
+git rebase master >> 
+
+git checkout master
+git merge ramarebase
+
+
+--borrar archivos y actualizar git
+git checkout -- a3.txt
+
+--TAGS
+
+  git tag -a vx.x -m "message"
+--tag sin mensaje 
+  git tag v1.1 >> se pone en donde esta el HEAD
+
+---- muestra
+  git tag
+  git tag show v1.0
+
+----colocar tag a uno historico
+  git tag -a v0.9 5a34ab4   >> se abre un edito
+
+##############
+git config --global --list  >>mostrar lista
+
+SSH
+git init --bare --shared
+
+##############
+git --version
+//Muestra la version de Git
+git config --global user.name "Ernesto Valtierra"
+git config --global user.name
+git config --global user.email "ernesto.valtierra@gmail.com"
+git config --global user.email
+git config --global color.ui true
+//Configuración inicial de Git
+git config --global --list
+//Resumen de las variables iniciales
+git help
+//Resumen rápidop de los comandos
+clear
+//Limpiar consola 
+git status
+//Muestra el estatus, si hay archivos modificados
+git add -A
+//Sube todos los archivos al Staging Area
+git config core.autocrlf false
+//Soluciona el problema de como tratan los archivos diferentes so
+git commit -m "Estos son los archivos base de mi portafolio"
+// Sube al Repositorio los archivos listos del Staging Area
+git log
+//Muestra lista de los commits creados
+git add index.html
+//Sube al Staging Area solo el archivo seleccionado
+git checkout 764afe5a652ac60de3f781131922679fb746dbcc
+//Viaje en el tiempo, muestra solo para ver algun commit anterior
+git checkout master
+//Regresa al íltimo commit creado
+git log > commits.txt
+//Guarda en commits.txt todos los commits creados
+git reset --soft d8d1d5a8e832d676606e3f432ce13c67078fec0b
+//Borra todos los commits hasta dejar como último el seleccionado
+git reset --hard d8d1d5a8e832d676606e3f432ce13c67078fec0b
+//Borra Todo (Precación) "Cuidado" ¡Peligro!
+git commit -ammend -m "Este sustituiria el ultimo commit"
+//Sustituir el último commit (solo se puede en el último)
+git reset HEAD index.html
+//Bajar del Staging Area al Working Area
+
+
+---
+## sali mal del editor
+$ git merge experimental
+fatal: You have not concluded your merge (MERGE_HEAD exists).
+Please, commit your changes before you merge.
+
